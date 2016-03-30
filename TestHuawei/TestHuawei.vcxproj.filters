@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="009求int型数据在内存中存储时1的个数.cpp">
+    <ClCompile Include="013密码验证合格程序.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
