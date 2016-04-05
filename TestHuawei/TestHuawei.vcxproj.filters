@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="013密码验证合格程序.cpp">
+    <ClCompile Include="016合唱队.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

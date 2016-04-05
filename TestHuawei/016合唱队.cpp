@@ -18,18 +18,53 @@ using namespace std;
 int func(vector<int> &stu, int index, int len)
 {
     int ret = 0;
-    int max, min;
-    for (int i = 0; i < index; ++i) {
-        max = stu[i];
-        if (stu[i + 1] < max)
-            ++ret;
-    }
 
-    for (int i = index; i < len - 1; ++i) {
-        min = stu[index];
-        if (stu[i + 1] > min)
-            ++ret;
-    }
+	int min, max;
+	// 从0 - k比较
+	// 寻找第一个闭stu[index]小的元素
+	int i = 0;
+	for ( ; i < index; ++i) {
+		if (stu[i] >= stu[index]) {
+			++ret;
+			continue;
+		}
+		min = stu[i];
+		i++;  // 添加i++，避免后面重复计算
+		break;
+	}
+	// 完成剩余的比较
+	for ( ; i < index; ++i) {
+		if (stu[i] > stu[index]) {
+			++ret;
+			continue;
+		}
+		
+		if (stu[i] <= min) ++ret;
+		else min = stu[i];
+	}
+
+	// 从k - len比较
+	// 寻找第一个闭stu[index]小的元素
+	int j = index + 1;
+	for ( ; j < len; ++j) {
+		if (stu[j] >= stu[index]) {
+			++ret;
+			continue;
+		}
+		max = stu[j];
+		j++;  // 添加j++，避免后面重复计算
+		break;
+	}
+	// 完成剩余的比较
+	for (; j < len; ++j) {
+		if (stu[j] > stu[index]) {
+			++ret;
+			continue;
+		}
+		
+		if (stu[j] >= max) ++ret;
+		else max = stu[j];
+	}
 
     return ret;
 }
@@ -48,9 +83,10 @@ int main()
     int min = num;
     int temp;
     for (int i = 0; i < stu.size(); ++i) {
-       temp =  func(stu, i, stu.size());
+       temp = func(stu, i, stu.size());
        if (temp < min) min = temp;
     }
 
     cout << min << endl;
+	system("pause");
 }
