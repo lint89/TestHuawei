@@ -30,6 +30,7 @@
  * 90000000
  *********************************************************/
 
+#if 0
 #include <iostream>
 #include <string>
 #include <vector>
@@ -38,4 +39,75 @@ using namespace std;
 
 int main()
 {
+	int num;
+	while (cin >> num) {
+		string str;
+		while (num--)
+		{
+			string out;
+
+			cin >> str;	
+
+			out = "00000000";
+			if (str.size() < 8) {
+				for (int i = 0; i < str.size(); ++i)
+					out[i] = str[i];
+
+				cout << out << endl;
+			} else if (str.size() == 8) {
+				cout << str << endl;
+				cout << out << endl;
+			} else {
+				int num = str.size() / 8;
+				for (int i = 0; i < num; ++i)
+					cout << str.substr(i*8, 8) << endl;
+
+				for (int i = num * 8; i < str.size(); ++i)
+					out[i - num*8] = str[i];
+
+				cout << out << endl;
+			}
+		}
+	}
+
 }
+
+#endif
+
+
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+int main()
+{
+	int num;
+	while (cin >> num) {
+		string str;
+		while (num--)
+		{
+			cin >> str;	
+
+			while (str.size() > 8)
+			{
+				cout << str.substr(0, 8) << endl;
+				str = str.substr(8);
+			}
+
+			string out = "00000000";
+			if (str.size() == 8) {
+				cout << str << endl;
+				cout << out << endl;
+			} else {
+				for (int i = 0; i < str.size(); ++i)
+					out[i] = str[i];
+				//out.replace(0, str.size() - 1, str);
+				cout << out << endl;
+			}
+		}
+	}
+
+}
+
